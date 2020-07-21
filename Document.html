@@ -2,10 +2,71 @@
 <html>
   <head>
     <base target="_top">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+    <?!=include('Global');?>
+    <?!=include('Global_css');?>
   </head>
   <body>
-    
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-md-1 col-lg-2 mr-0 px-3" href="#"><img src='https://le-cdn.website-editor.net/890182a9e4384ae6930cd502f9f32152/dms3rep/multi/opt/IAC+FINAL+%7C+Large-480w.png' height= 40px; style="margin: 3px;float:left;" >  Innovative Autism<br> Connections</a>
+      <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+    </nav>
+  <div class="container-fluid">
+    <div class=row>
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="sidebar-sticky pt-3">
+        <ul class="nav flex-column">
+          <?var url = getScriptUrl();?>
+          <li class="nav-item">
+            <a class="nav-link" href='<?=url?>?page=Info'>Info</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?=url?>?page=Assigned_Staff">Assigned Staff</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?=url?>?page=Schedule">Schedule</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?=url?>?page=Insurance">Insurance</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?=url?>?page=Authorization">Authorization</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?=url?>?page=Medical">Medical</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?=url?>?page=Report">Report</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="<?=url?>?page=Document">Documents</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?=url?>?page=Intake">Intake</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+      
+      
+      
+      
+      
+      
+      
+    </div>
+  </div>
   </body>
+  <?!=include('Global_js');?>
 </html>
 
 

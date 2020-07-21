@@ -1,6 +1,7 @@
 function doGet(e) {
  const list = ['claggui@innovativeautism.org','jlaggui@innovativeautism.org','jlison@innovativeautism.org']
  var whitelisted = false;
+ var iconUrl = 'https://le-cdn.website-editor.net/890182a9e4384ae6930cd502f9f32152/dms3rep/multi/opt/IAC+FINAL+%7C+Large-480w.png';
  var user = Session.getActiveUser().getEmail()
    for(var i = 0; i < list.length; i++){
      if(user == list[i]){
@@ -48,3 +49,51 @@ function getScriptUrl() {
  var url = ScriptApp.getService().getUrl();
  return url;
 }
+/*
+ * Contains info to connect to database
+ */      
+function databaseConnect(){
+  var connection = PropertiesService.getScriptProperties().getProperties();
+  
+  return connection;
+}
+/*
+ * Creates connection to database
+ */
+  function connect(connection){
+    var connection = connection
+    var url = connection.url
+    var user = connection.user
+    var password = connection.password
+    var conn = Jdbc.getCloudSqlConnection(url, user, password);
+  return conn;
+    
+  }
+/*
+ * Download list of clients
+ */
+  function loadClients(){
+    var dbConnect = databaseConnect();
+    var conn = connect(dbConnect);
+    var stmt = conn.createStatement();    
+    var query = "select concat(FirstName,' ',LastName) as Name,ClientId,FolderLink,IacStatus from client;";
+    var data = stmt.executeQuery(query);
+    var numCol = data.getMetaData().getColumnCount();
+    var arr = [];
+    var obj = {};
+    
+    while(data.next()){
+      obj['Name'] = data.getString('Name');
+      obj['ClientId'] = data.getString('ClientId');
+      obj['FolderLink'] = data.getString('FolderLink');
+      obj['IacStatus'] = data.getString('IacStatus');
+            
+    arr.push(obj);
+    obj = {};
+    }
+   
+    stmt.close();
+    conn.close();
+    var json = JSON.stringify(arr);
+   return json;
+  }

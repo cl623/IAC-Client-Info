@@ -1,11 +1,62 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <base target="_top">
-  </head>
-  <body>
-    
-  </body>
-</html>
+<script>
+$("#menu-toggle").click(function(e) {
+  e.preventDefault();
+  $("#wrapper").toggleClass("toggled");
+});
+function showLinkStatus(clientId){
+  console.log(data[clientId-1]['IacStatus'])
+  let client = data[clientId-1]
+  if(clientId==client['ClientId']){
+    $('#folderLink').attr("href",client['FolderLink']);
+    $('#iacStatus').empty();
+    if(client['IacStatus'] == 'Active'){
+      $('#iacStatus').html(client['IacStatus']);
+      $('#iacStatus').removeClass('statusInactive')
+      $('#iacStatus').addClass('statusActive')
+    }
+    else{
+      $('#iacStatus').html(client['IacStatus']);    
+      $('#iacStatus').removeClass('statusActive')
+      $('#iacStatus').addClass('statusInactive')
+      }
+  }
+  else{
+    $.each(data,function(index,row){
+      if(clientId==row['ClientId']){
+        $('#folderLink').attr("href",row['FolderLink']);
+        $('#iacStatus').empty();
+        if(client['IacStatus'] == 'Active'){
+          $('#iacStatus').html(row['IacStatus']);
+          $('#iacStatus').removeClass('statusInactive')
+          $('#iacStatus').addClass('statusActive')
+        }
+       else{
+          $('#iacStatus').html(row['IacStatus']);    
+          $('#iacStatus').removeClass('statusActive')
+          $('#iacStatus').addClass('statusInactive')
+        }
+      }
+    });
+  }
+}
+$(document).ready(function() {
+    $('#clientSelect').select2({
+      width:'100%'
+    });
+    google.script.run.withSuccessHandler(getClients).loadClients();
+});
+function getClients(clientList)
+{
+    data = JSON.parse(clientList);
+    selectFill(data);
+}
 
-
+function selectFill(clientList){
+  $.each(clientList,function(index,row){
+    var fillName = row["Name"]
+    var fillClientId = row["ClientId"];
+    var o = new Option( fillName+' | Client Id: '+fillClientId, fillClientId);
+    $("#clientSelect").append(o);
+    });
+}
+</script>
