@@ -1,4 +1,22 @@
 <script>
+
+/**
+ * Populates #sideBar with links; <url>?page=links[i]
+ *
+ * @param {url} the webapp url via getScriptUrl()
+ */
+function populateSidebar(url){
+  const links = ['Info', 'Assigned_Staff', 'Schedule', 'Insurance', 'Authorization', 'Medical', 'Report', 'Documents', 'Intake']
+  const l =     ['Info', 'Assigned Staff', 'Schedule', 'Insurance', 'Authorization', 'Medical', 'Report', 'Documents', 'Intake']
+  const sidebar = $('#sideBar')
+  sidebar.empty()
+  for(let i = 0, j = links.length; i < j; i++){
+    sidebar.append('<li class="nav-item">' +
+                     '<a class="nav-link active" href="' + url + '?page='+ links[i] + '">' + l[i] + '</a>' +
+                   '</li>')
+  }
+}
+
 $("#menu-toggle").click(function(e) {
   e.preventDefault();
   $("#wrapper").toggleClass("toggled");
@@ -40,6 +58,7 @@ function showLinkStatus(clientId){
   }
 }
 $(document).ready(function() {
+  google.script.run.withSuccessHandler(populateSidebar).getScriptUrl();
     $('#clientSelect').select2({
       width:'100%'
     });

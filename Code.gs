@@ -30,8 +30,8 @@ function doGet(e) {
     else if(e.parameter['page'] == 'Report'){
       return HtmlService.createTemplateFromFile('Report').evaluate().setTitle("Report").setFaviconUrl('https://le-cdn.website-editor.net/890182a9e4384ae6930cd502f9f32152/dms3rep/multi/opt/IAC+FINAL+%7C+Large-480w.png');
     }
-    else if(e.parameter['page'] == 'Document'){
-      return HtmlService.createTemplateFromFile('Document').evaluate().setTitle("Documents").setFaviconUrl('https://le-cdn.website-editor.net/890182a9e4384ae6930cd502f9f32152/dms3rep/multi/opt/IAC+FINAL+%7C+Large-480w.png');
+    else if(e.parameter['page'] == 'Documents'){
+      return HtmlService.createTemplateFromFile('Document').evaluate().setTitle("Document").setFaviconUrl('https://le-cdn.website-editor.net/890182a9e4384ae6930cd502f9f32152/dms3rep/multi/opt/IAC+FINAL+%7C+Large-480w.png');
     }
     else if(e.parameter['page'] == 'Intake'){
       return HtmlService.createTemplateFromFile('Intake').evaluate().setTitle("Intake").setFaviconUrl('https://le-cdn.website-editor.net/890182a9e4384ae6930cd502f9f32152/dms3rep/multi/opt/IAC+FINAL+%7C+Large-480w.png');
@@ -45,6 +45,11 @@ function include(filename){
   return HtmlService.createHtmlOutputFromFile(filename).getContent();
 }
 
+/**
+ * Retrieves script url from ScriptApp service
+ *
+ * @return {string} the webapp url
+ */
 function getScriptUrl() {
  var url = ScriptApp.getService().getUrl();
  return url;
